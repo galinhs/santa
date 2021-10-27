@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <title>Document</title>
+    <style>
+        body,
+        html {
+            width: 100vw;
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        body {
+            background-image: url(./images/pixelnight.png);
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: bottom;
+            font-family: 'Press Start 2P', '微軟正黑體', sans-serif;
+        }
+
+        #stClaus {
+            width: 100%;
+            height: 100%;
+            animation: a2 3s infinite;
+            position: absolute;
+            top: 10%;
+        }
+
+        #stClaus img {
+            display: block;
+            margin: auto;
+        }
+
+        @keyframes a2 {
+            0% {
+                transform: translateY(10px);
+            }
+
+            50% {
+                transform: translateY(-5px);
+            }
+
+            100% {
+                transform: translateY(10px);
+            }
+        }
+
+        .cursorA {
+            cursor: url(./images/gift.png) 5 5, auto;
+        }
+
+        .cursorD {
+            cursor: url(./images/redgift.png) 5 5, auto;
+        }
+
+        #game {
+            width: 85%;
+            position: absolute;
+            top: 70%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 0;
+        }
+
+        .hole {
+            position: relative;
+            width: 100px;
+            height: 150px;
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+            margin: 15px 20px;
+            display: inline-block;
+            font-size: 1rem;
+            transform: translateX(10px);
+        }
+
+        .seat {
+            width: 160px;
+            height: 180px;
+            background-image: url(./images/house1.png);
+            background-repeat: no-repeat;
+            background-size: 80% 80%;
+            position: absolute;
+            top: 60%;
+            margin-left: -10px;
+        }
+
+        .seat2 {
+            width: 160px;
+            height: 180px;
+            background-image: url(./images/house2.png);
+            background-repeat: no-repeat;
+            background-size: 80% 80%;
+            position: absolute;
+            top: 60%;
+            margin-left: -10px;
+        }
+
+        .seat3 {
+            width: 160px;
+            height: 180px;
+            background-image: url(./images/house3.png);
+            background-repeat: no-repeat;
+            background-size: 80% 80%;
+            position: absolute;
+            top: 60%;
+            margin-left: -10px;
+        }
+
+        .sock1 {
+            width: 80px;
+            height: 80px;
+            background-image: url(./images/clicksock1.png);
+            background-repeat: no-repeat;
+            background-size: 80% 80%;
+            position: absolute;
+            top: 45%;
+            left: 38%;
+            transform: translate(10%, -65%);
+        }
+
+        .sock2 {
+            width: 80px;
+            height: 80px;
+            background-image: url(./images/clicksock2.png);
+            background-repeat: no-repeat;
+            background-size: 80% 80%;
+            position: absolute;
+            top: 45%;
+            left: 38%;
+            transform: translate(10%, -65%);
+        }
+
+        .heart {
+            width: 80px;
+            height: 60px;
+            background-repeat: no-repeat;
+            background-size: 50% 50%;
+            position: absolute;
+            top: 55%;
+            left: -20%;
+        }
+
+        #top {
+            position: absolute;
+            left: 50%;
+            top: 10px;
+            transform: translateX(-50%);
+        }
+
+        #btn-start {
+            position: absolute;
+            right: 45px;
+            width: 120px;
+            height: 30px;
+            font-size: 20px;
+            font-family: 'Press Start 2P', '微軟正黑體', sans-serif;
+            background: rgb(67, 175, 57);
+            color: rgb(255, 238, 0);
+            border: none;
+            box-shadow:
+                0 0 0px 2px rgba(14, 112, 5, 0.774),
+                0 0 0px 2px rgba(76, 199, 65, 0.445);
+            border-radius: 10px 10px;
+            line-height: 30px;
+        }
+
+        #btn-start:hover {
+            background: rgb(56, 146, 47);
+            color: rgba(0, 0, 0, 0.582);
+            box-shadow:
+                0 0 0px 2px rgb(24, 104, 0),
+                0 0 0px 2px rgb(255, 230, 0),
+                inset 20px 20px 60px rgba(14, 112, 5, 0.774),
+                inset -20px -20px 60px rgba(76, 199, 65, 0.445);
+        }
+
+        #top {
+            position: absolute;
+            width: 600px;
+        }
+
+        p {
+            position: absolute;
+            right: -13%;
+            top: -5%;
+            color: red;
+            font-size: 25px;
+        }
+
+        #txtTop {
+            position: absolute;
+            font-size: 30px;
+            color: white;
+            line-height: 1;
+        }
+
+        #textScore {
+            position: absolute;
+            right: -120px;
+        }
+
+        #time {
+            position: absolute;
+            left: 180px;
+        }
+
+        .champ {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            margin: 10px;
+        }
+
+        #textHighscorePlayer,
+        #textHighscore {
+            font-size: 1rem;
+        }
+
+        #txt {
+            position: absolute;
+            left: 50px;
+            top: 10px;
+            color: aliceblue;
+        }
+    </style>
+</head>
+
+<body class="cursorA">
+    <div id="container">
+        <div id="stClaus">
+            <img src="./images/StClaus.png" alt="">
+        </div>
+        <div id="content">
+            <div id="top">
+                <input type="button" value="Start" id="btn-start">
+                <div id="txtTop">
+                    <span id="textScore">Score:0</span>
+                    <span id="time">Time:30</span>
+                </div>
+            </div>
+            <div id="record">
+                <img class="champ" src="./images/giftsock.png">
+                <div id="txt">
+                    <span class="text" id="textHighscorePlayer">-</span>
+                    <br>
+                    <span class="text" id="textHighscore">-</span>
+                </div>
+            </div>
+        </div>
+        <div id="game">
+            <div class="hole">
+                <div class="seat"></div>
+                <div class="sock"></div>
+                <p></p>
+                <div class="heart"></div>
+            </div>
+            <div class="hole">
+                <div class="seat2"></div>
+                <div class="sock"></div>
+                <p></p>
+                <div class="heart"></div>
+            </div>
+            <div class="hole">
+                <div class="seat3"></div>
+                <div class="sock"></div>
+                <p></p>
+                <div class="heart"></div>
+            </div>
+            <div class="hole">
+                <div class="seat"></div>
+                <div class="sock"></div>
+                <p></p>
+                <div class="heart"></div>
+            </div>
+            <div class="hole">
+                <div class="seat2"></div>
+                <div class="sock"></div>
+                <p></p>
+                <div class="heart"></div>
+            </div>
+            <div class="hole">
+                <div class="seat3"></div>
+                <div class="sock"></div>
+                <p></p>
+                <div class="heart"></div>
+            </div>
+            <div class="hole">
+                <div class="seat"></div>
+                <div class="sock"></div>
+                <p></p>
+                <div class="heart"></div>
+            </div>
+            <div class="hole">
+                <div class="seat2"></div>
+                <div class="sock"></div>
+                <p></p>
+                <div class="heart"></div>
+            </div>
+            <div class="hole">
+                <div class="seat3"></div>
+                <div class="sock"></div>
+                <p></p>
+                <div class="heart"></div>
+            </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        const holes = document.getElementsByClassName('hole')
+        const socks = document.getElementsByClassName('sock')
+        const start = document.getElementById('btn-start')
+        const textScore = document.getElementById('textScore')
+        const time = document.getElementById('time')
+        const p = document.getElementsByTagName('p')
+        const heart = document.getElementsByClassName('heart')
+        const body = document.getElementsByTagName('body')[0]
+        const textHighscorePlayer = document.getElementById('textHighscorePlayer')
+        const textHighscore = document.getElementById('textHighscore')
+        const game = document.getElementById('game')
+        const rand = (min, max) => {
+            return Math.round(Math.random() * (max - min)) + min
+        }
+
+        Swal.fire({
+            title: '說明',
+            text: '用「A鍵及D鍵」切換游標圖式，點擊相同顏色的襪子送出禮物，給對顏色 +1 分，給錯顏色 -1 分。',
+            imageWidth: 400,
+            imageHeight: 350,
+            imageAlt: '用「A鍵及D鍵」切換游標圖式，點擊相同顏色的襪子送出禮物，給對顏色 +1 分，給錯顏色 -1 分。'
+        })
+
+        let score = 0
+        let countdown = 30
+        let highscore = { name: '', score: 0 }
+        const highStorage = JSON.parse(localStorage.getItem('wam'))
+        if (highStorage !== null) {
+            highscore = highStorage
+            textHighscorePlayer.innerText = `　Name:${highscore.name}`
+            textHighscore.innerText = `　Score:${highscore.score}`
+        }
+        start.onclick = () => {
+            start.disabled = true
+            score = 0
+            countdown = 30
+            textScore.innerText = `Score:${score}`
+            time.innerText = `Time:${countdown}`
+            timer = setInterval(gameStart, 1000)
+            gameStart()
+        }
+
+
+        let data = []
+
+        const gameStart = () => {
+            for (let i = 0; i < 3; i++) {
+                const x = rand(0, 8)
+                const y = rand(1, 2)
+                // const r = rand(1, 2)
+                if (holes[x].style.backgroundImage == '' && p[x].innerText === '') {
+                    data.push({ hole: x, sock: y })
+                    if (p[x].innerText === '') {
+                        if (!socks[x].classList.contains('sock1') && !socks[x].classList.contains('sock2')) {
+                            socks[x].classList.add(`sock${y}`)
+                        }
+                    }
+                }
+            }
+
+            countdown--
+            time.innerText = `Time:${countdown}`
+            if (countdown <= 0) {
+                data = []
+                clearInterval(timer)
+                start.disabled = false
+                for (let i = 0; i < 9; i++) {
+                    holes[i].style.backgroundImage = ''
+                    socks[i].classList.remove('sock1')
+                    socks[i].classList.remove('sock2')
+                    p[i].innerText = ''
+                }
+                if (score > highscore.score) {
+                    Swal.fire({
+                        title: `你得到${score}分`,
+                        input: 'text',
+                        inputLabel: '你的名字',
+                        inputPlaceholder: '請輸入你的名字',
+                        showClass: {
+                            popup: 'animate__animated animate__fadeInDown'
+                        },
+                        hideClass: {
+                            popup: 'animate__animated animate__fadeOutUp'
+                        }
+                    }).then(function (result) {
+                        if (result.value == null) {
+                            highscore.name = 'passBy'
+                        } else {
+                            highscore.name = result.value
+                        }
+                        highscore.score = score
+                        textHighscorePlayer.innerText = '　NAME:' + highscore.name
+                        textHighscore.innerText = '　SCORE:' + highscore.score
+                        localStorage.setItem('wam', JSON.stringify(highscore))
+                    })
+                } else {
+                    Swal.fire({
+                        title: '恭喜過關',
+                        text: `你得到 ${score} 分`,
+                        showClass: {
+                            popup: 'animate__animated animate__fadeInDown'
+                        },
+                        hideClass: {
+                            popup: 'animate__animated animate__fadeOutUp'
+                        }
+                    })
+                }
+            }
+        }
+
+        window.onload = function () {
+            for (let i = 0; i < 9; i++) {
+                holes[i].onclick = () => {
+                    if (socks[i].classList.contains('sock1') && body.classList.contains('cursorD')) {
+                        score++
+                        socks[i].classList.remove('sock1')
+                        p[i].innerText = '+1'
+                        function ishole(r) { return r.hole == i }
+                        heart[i].style.backgroundImage = `url(./images/heart.png)`
+                        data.splice(data.indexOf(data.find(ishole)), 1)
+                    }
+                    else if (socks[i].classList.contains('sock2') && body.classList.contains('cursorA')) {
+                        score++
+                        socks[i].classList.remove('sock2')
+                        p[i].innerText = '+1'
+                        function ishole(r) { return r.hole == i }
+                        heart[i].style.backgroundImage = `url(./images/heart.png)`
+                        data.splice(data.indexOf(data.find(ishole)), 1)
+                    } else {
+                        score--
+                        console.log(socks[i])
+                        return p[i].innerText = '-1'
+                    }
+                    textScore.innerText = `Score:${score}`
+                    clearTime = setTimeout(clearText, 1000)
+                }
+
+                const clearText = () => {
+                    p[i].innerText = ''
+                    holes[i].style.backgroundImage = ''
+                    heart[i].style.backgroundImage = ''
+                }
+            }
+        }
+
+        document.onkeydown = (event) => {
+            if (event.key == 'a' || event.key == 'A') {
+                body.classList.add('cursorA')
+                body.classList.remove('cursorD')
+            }
+            if (event.key == 'd' || event.key == 'D') {
+                body.classList.add('cursorD')
+                body.classList.remove('cursorA')
+            }
+        }
+    </script>
+</body>
+
+</html>
